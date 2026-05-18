@@ -1,0 +1,505 @@
+System Design & Microservices Interview Notes
+1. Single Server Architecture
+Explanation
+
+Single server architecture is a setup where frontend, backend, and database run on the same server. Client requests first go to DNS, which converts domain name into IP address, then request reaches server for processing. Backend processes business logic, communicates with database, and sends response back to client. This architecture is simple and suitable for small applications and initial startup projects.
+
+Suitable Cases
+Small applications
+College projects
+Internal tools
+MVP products
+Advantages
+Easy setup
+Low cost
+Simple deployment
+Disadvantages
+Single point of failure
+Limited scalability
+Performance bottleneck
+2. DNS (Domain Name System)
+Explanation
+
+DNS converts human-readable domain names like:
+
+google.com
+
+into IP addresses so browsers can locate servers on internet. Without DNS, users would need to remember server IP addresses directly. DNS acts like internet phonebook.
+
+Suitable Cases
+
+Used in all internet applications and websites.
+
+3. HTTP Server & Tomcat
+HTTP Server
+Explanation
+
+HTTP server receives and processes HTTP/HTTPS requests from clients. It handles static content, SSL, routing, and load balancing. Examples include Nginx and Apache HTTP Server.
+
+Suitable Cases
+Serving static files
+Reverse proxy
+Load balancing
+Web hosting
+Tomcat
+Explanation
+
+Apache Tomcat is a Java servlet container used to run Java applications like Spring Boot and JSP applications. It converts HTTP requests into Java objects and executes backend business logic.
+
+Suitable Cases
+Java web applications
+Spring Boot applications
+Enterprise backend systems
+4. Relational Database (SQL)
+Explanation
+
+Relational databases store data in tables with rows and columns and maintain relationships using primary and foreign keys. They use SQL language and support ACID transactions for strong consistency.
+
+Examples
+MySQL
+PostgreSQL
+Oracle Database
+Suitable Cases
+Banking systems
+ERP applications
+Payment systems
+Inventory management
+Advantages
+Strong consistency
+ACID transactions
+Complex joins supported
+Disadvantages
+Hard horizontal scaling
+Fixed schema
+Less flexible
+5. Non-Relational Database (NoSQL)
+Explanation
+
+NoSQL databases store flexible data formats like JSON, key-value, graph, or documents. They support high scalability and distributed architectures.
+
+Examples
+MongoDB
+Redis
+Cassandra
+Suitable Cases
+Social media
+Real-time chat
+Big data systems
+Caching
+Advantages
+Horizontal scalability
+Flexible schema
+High performance
+Disadvantages
+Weak relationships
+Limited transaction support
+6. Vertical Scaling
+Explanation
+
+Vertical scaling means increasing server resources such as CPU, RAM, or storage within same server. It is simple but limited by hardware capacity.
+
+Suitable Cases
+Small systems
+Initial startup applications
+Monolithic applications
+Advantages
+Easy implementation
+Simple maintenance
+Disadvantages
+Single point of failure
+Hardware limits
+7. Horizontal Scaling
+Explanation
+
+Horizontal scaling means adding multiple servers and distributing traffic using load balancers. It improves scalability and fault tolerance.
+
+Suitable Cases
+Large-scale applications
+Distributed systems
+Cloud-native applications
+Advantages
+High scalability
+Fault tolerance
+Better availability
+Disadvantages
+Complex architecture
+Distributed system challenges
+8. Load Balancer
+Explanation
+
+Load balancer distributes incoming traffic across multiple servers to improve performance, availability, and scalability.
+
+Round Robin
+Explanation
+
+Requests are distributed equally among servers sequentially.
+
+Suitable Cases
+Equal-capacity servers
+Simple applications
+IP Hashing
+Explanation
+
+Uses client IP address to route requests to same server consistently.
+
+Suitable Cases
+Session-based applications
+Shopping cart systems
+Least Connection
+Explanation
+
+Traffic goes to server with least active connections.
+
+Suitable Cases
+Chat systems
+Streaming applications
+Least Response Time
+Explanation
+
+Requests routed to fastest responding server.
+
+Suitable Cases
+Low-latency systems
+Financial applications
+Health Check
+Explanation
+
+Load balancer continuously checks server health and removes failed servers.
+
+Suitable Cases
+High availability systems
+Production environments
+Weighted Round Robin
+Explanation
+
+Traffic distributed based on server weight/capacity.
+
+Suitable Cases
+Unequal hardware environments
+Geographical Load Balancing
+Explanation
+
+Traffic routed based on user location.
+
+Suitable Cases
+Global applications
+CDN systems
+9. OSI Model
+Explanation
+
+OSI model is a 7-layer networking framework explaining how data travels across network systems.
+
+Layers
+Physical Layer
+Data Link Layer
+Network Layer
+Transport Layer
+Session Layer
+Presentation Layer
+Application Layer
+Important Points
+Router works at Layer 3
+Switch works at Layer 2
+HTTP works at Application Layer
+TCP/UDP work at Transport Layer
+10. HTTP
+Explanation
+
+HTTP is a stateless communication protocol used between client and server using request-response model.
+
+Suitable Cases
+APIs
+Websites
+Non-secure communication
+Disadvantages
+No encryption
+11. HTTPS
+Explanation
+
+HTTPS is secure version of HTTP using SSL/TLS encryption to protect data communication.
+
+Suitable Cases
+Banking applications
+Payment systems
+Secure websites
+Advantages
+Data encryption
+Secure communication
+12. WebSocket
+Explanation
+
+WebSocket provides persistent two-way communication between client and server with low latency.
+
+Suitable Cases
+Chat applications
+Gaming
+Live notifications
+Real-time dashboards
+13. REST API
+Explanation
+
+REST is HTTP-based API architecture using methods like GET, POST, PUT, DELETE and JSON responses.
+
+Suitable Cases
+CRUD applications
+Web/mobile APIs
+Enterprise APIs
+Advantages
+Simple
+Scalable
+Widely supported
+14. GraphQL
+Explanation
+
+GraphQL allows clients to request only required data using single endpoint.
+
+Suitable Cases
+Complex frontend applications
+Mobile applications
+Dashboard systems
+Advantages
+Avoids over-fetching
+Fewer API calls
+15. gRPC
+Explanation
+
+gRPC is high-performance communication framework using HTTP/2 and Protocol Buffers.
+
+Suitable Cases
+Microservices communication
+Real-time systems
+Distributed systems
+Advantages
+Very fast
+Low latency
+16. Authentication
+Explanation
+
+Authentication verifies user identity using login credentials, tokens, or OAuth mechanisms.
+
+Basic Authentication
+Suitable Cases
+Internal APIs
+Simple systems
+JWT Authentication
+Explanation
+
+Server generates token after login and client sends token in every request.
+
+Suitable Cases
+REST APIs
+Mobile apps
+Microservices
+OAuth2
+Explanation
+
+OAuth2 allows third-party login without sharing passwords.
+
+Suitable Cases
+Google login
+Social login systems
+SSO
+Explanation
+
+Single Sign-On allows user to login once and access multiple applications.
+
+Suitable Cases
+Enterprise systems
+Corporate portals
+17. Authorization
+Explanation
+
+Authorization determines what authenticated users are allowed to access.
+
+RBAC (Role-Based Access Control)
+Explanation
+
+Permissions assigned based on roles.
+
+Suitable Cases
+Banking systems
+Admin dashboards
+ABAC (Attribute-Based Access Control)
+Explanation
+
+Permissions based on attributes like department, location, or time.
+
+Suitable Cases
+Government systems
+Enterprise security systems
+ACL (Access Control List)
+Explanation
+
+Each resource maintains list of user permissions.
+
+Suitable Cases
+File sharing systems
+Cloud storage
+18. Security Techniques
+Rate Limiting
+Explanation
+
+Limits number of requests to prevent abuse.
+
+Suitable Cases
+Public APIs
+Login APIs
+CORS
+Explanation
+
+Controls which frontend domains can access backend APIs.
+
+Suitable Cases
+React + Spring Boot applications
+SQL Injection Protection
+Explanation
+
+Prevents malicious SQL queries using prepared statements.
+
+Suitable Cases
+Database-driven applications
+CSRF Protection
+Explanation
+
+Prevents unauthorized actions from authenticated users.
+
+Suitable Cases
+Banking websites
+Session-based systems
+XSS Protection
+Explanation
+
+Prevents malicious JavaScript injection into webpages.
+
+Suitable Cases
+Social media applications
+Comment systems
+Firewall
+Explanation
+
+Filters malicious network traffic.
+
+Suitable Cases
+Enterprise systems
+Production infrastructure
+VPN
+Explanation
+
+Provides secure encrypted communication over internet.
+
+Suitable Cases
+Remote work
+Internal company access
+19. Microservices Architecture
+Explanation
+
+Microservices architecture divides application into small independent services communicating through APIs or messaging systems.
+
+Suitable Cases
+E-commerce systems
+Banking systems
+Cloud-native applications
+Advantages
+Independent deployment
+Better scalability
+Fault isolation
+Disadvantages
+Distributed complexity
+Network latency
+Hard debugging
+20. API Gateway Pattern
+Explanation
+
+API Gateway provides single entry point for all client requests and handles routing, authentication, monitoring, and load balancing.
+
+Suitable Cases
+Microservices systems
+Cloud-native applications
+Advantages
+Centralized security
+Simplified frontend communication
+Disadvantages
+Single point of failure
+21. Database per Service Pattern
+Explanation
+
+Each microservice owns its own database independently.
+
+Suitable Cases
+Independent scalable services
+Polyglot persistence systems
+22. Circuit Breaker Pattern
+Explanation
+
+Circuit breaker prevents repeated calls to failing services and avoids cascading failures.
+
+Suitable Cases
+External APIs
+Distributed systems
+23. Service Discovery Pattern
+Explanation
+
+Services dynamically register and discover each other without hardcoded IP addresses.
+
+Suitable Cases
+Kubernetes environments
+Dynamic cloud systems
+24. Event Sourcing Pattern
+Explanation
+
+All state changes stored as immutable events instead of updating current values directly.
+
+Suitable Cases
+Audit systems
+Financial systems
+25. CQRS Pattern
+Explanation
+
+Separates read operations and write operations into different models.
+
+Suitable Cases
+High-read applications
+Reporting systems
+26. Saga Pattern
+Explanation
+
+Saga pattern manages distributed transactions using local transactions and compensating rollback actions.
+
+Suitable Cases
+E-commerce order systems
+Banking workflows
+27. Strangler Fig Pattern
+Explanation
+
+Gradually replaces monolithic applications with microservices step by step.
+
+Suitable Cases
+Legacy system migration
+28. Bulkhead Pattern
+Explanation
+
+Isolates resources so failure in one component does not affect others.
+
+Suitable Cases
+High availability systems
+29. Sidecar Pattern
+Explanation
+
+Deploys helper components alongside application containers for logging, monitoring, or networking.
+
+Suitable Cases
+Kubernetes environments
+Service mesh architectures
+30. Data Consistency in Microservices
+Explanation
+
+Microservices maintain consistency using eventual consistency and Saga pattern instead of distributed ACID transactions.
+
+Techniques
+Saga Pattern
+Event-Driven Architecture
+Outbox Pattern
+Kafka/RabbitMQ communication
+Suitable Cases
+Distributed systems
+Event-driven microservices
