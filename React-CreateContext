@@ -1,0 +1,27 @@
+import React , { createContext, useContext} from "react";
+
+const userContext = createContext();
+
+function Child()
+{
+  
+  const user = useContext(userContext)
+  
+  return (
+    <div>
+      <h2> Welcome {user}</h2>
+    </div>
+    )
+}
+
+
+function App()
+{
+  return (
+    <userContext.Provider value="Vighnesh">
+      <Child/>
+      
+    </userContext.Provider>)
+}
+
+export default App;
